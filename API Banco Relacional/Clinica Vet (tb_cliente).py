@@ -39,7 +39,7 @@ class vet_Client(mydb.Model):
 # METODO 1 - GET
 @app.route('/cliente_get', methods=['GET'])
 def seleciona_clientes():
-    cliente_selecionado = vet_Client.query.all()   # SELECT * FROM tb_clientes
+    cliente_selecionado = vet_Client.query.all()
     cliente_json = [cliente.to_json() for cliente in cliente_selecionado]
     return gera_resposta(200, "Lista de clientes", cliente_json)
 
@@ -67,7 +67,7 @@ def gera_resposta(status, conteudo, mensagem=False):
 @app.route('/cliente_get/<int:id_cliente_pam>', methods=['GET'])
 def seleciona_cliente_id(id_cliente_pam):
     cliente_selecionado = vet_Client.query.filter_by(id_cliente = id_cliente_pam).first()
-    # SELECT * FROM  tb_carros WHERE id_carro = 5
+    
     cliente_json = cliente_selecionado.to_json()
 
     return gera_resposta(200, cliente_json, 'cliente encontrado !')
